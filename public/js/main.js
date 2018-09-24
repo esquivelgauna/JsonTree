@@ -1,7 +1,7 @@
 var MyApp = angular.module('json-app', ['ngCookies']);
 var tree = {
     text: {
-        name: "Crimenes"
+        name: "Homicides"
     },
     children: []
 };
@@ -48,7 +48,12 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
         simple_chart_config = {
             chart: {
                 container: "#tree-simple",
+                //rootOrientation: "NORTH",
+                levelSeparation: 20,
+                siblingSeparation: 15,
+                subTeeSeparation: 15,
                 rootOrientation: "NORTH",
+
                 connectors: {
                     type: "straight",
                     style: {
@@ -61,53 +66,22 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
         };
         console.log(simple_chart_config)
         var my_chart = new Treant(simple_chart_config);
-        //var chart = new Treant(simple_chart_config, function() { alert( 'Tree Loaded' ) }, $ );
-
     });
 
     function Rama(json) {
         let children = [];
         for (let index in json) {
             if (Object.keys(json[index]).length > 0) {
-                children.push(
-                    {
-                        text: {
-                            name: index ,
-                            title: json[index].length
-                        },
-                        children: Rama(json[index])
-                    } 
-                );
+                children.push({
+                    text: {
+                        name: index,
+                        title: json[index].length
+                    },
+                    children: Rama(json[index])
+                });
             }
         }
-        //console.log(children);
         return children;
 
     }
 });
-
-//odeStructure: {
-// 	text: {
-// 		name: "Crimenes"
-// 	},
-// 	children: [{
-// 			text: {
-// 				name: "Same race ",
-// 			},
-// 			children: [{
-// 				text: {
-// 					name: "Same Gender "
-// 				},
-// 				children: [{
-// 						text: {
-// 							name: 'Private Place'
-// 						},
-// 						children: [{
-// 								text: {
-// 									name: 'Type Gun'
-// 								},
-// 								children: [{
-// 										text: {
-// 											name: 'Explosives'
-// 										}
-// 									},
