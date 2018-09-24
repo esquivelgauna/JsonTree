@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="d-flex h-100" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=.05">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src=" ./static/js/socket.io.js " ></script>
+    <script src=" ./static/js/angular.min.js " ></script>
+    <script src=" ./static/js/angular-cookies.js " ></script>
+    <script src=" ./static/js/angular-route.js " ></script>
+    <script src=" ./static/js/jquery-3.2.1.min.js " ></script>
+    <script src=" ./static/js/bootstrap.js " ></script>
+    <script src=" ./static/js/Treant.js " ></script>
+    <script src=" ./static/js/raphael.js " ></script>
+    <script src=" ./static/js/main.js " ></script>
+    <link rel="stylesheet" href="./static/css/bootstrap.css">
+    <link rel="stylesheet" href="./static/css/Treant.css">
+    
+
+    <title>JSON TREE</title>
+</head>
+<body class=" h-100 w-100 d-flex flex-column justify-content-between   " ng-app="json-app" >
+    <header class="text-center" ng-controller="Tree" >
+        <!-- <h1> JSON TREE  </h1> -->
+        <button class="btn btn-success m-auto" ng-click=" GetTree() "> Get Tree!! </button>
+    </header>
+    <!-- style=" width:1080px ; height: 1920px " -->
+    <main class="border p-4 d-flex h-100 " id="container" style=" width : 4000px ; heigth: 4000px;  " >
+        <div id="tree-simple" class="h-100 w-100" >  </div>
+        <!-- <h3>Esperando arbol...</h3> -->
+    </main>
+
+    <footer class="text-center" >    
+        <legend>Minería de datos 2018</legend>
+    </footer>
+    
+</body>
+</html>

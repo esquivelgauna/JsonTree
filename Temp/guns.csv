@@ -1,0 +1,276 @@
+Armas registradas,Type,Let
+acid,Quimico,A1
+carb monox,Quimico,A1
+carbon mon,Quimico,A1
+chloroform,Quimico,A1
+chlorophorm,Quimico,A1
+chorform,Quimico,A1
+Cyanide,Quimico,A1
+drug OD,Quimico,A1
+drugs,Quimico,A1
+drugs found lat,Quimico,A1
+execution,Quimico,A1
+gas,Quimico,A1
+gas?,Quimico,A1
+moth suff,Quimico,A1
+narc,Quimico,A1
+narcotics,Quimico,A1
+needle,Quimico,A1
+opiate,Quimico,A1
+overdose,Quimico,A1
+poisen,Quimico,A1
+poison,Quimico,A1
+strychnine,Quimico,A1
+bomb,Explosivos,A2
+fireworks,Explosivos,A2
+arson,Incendiar,A3
+coal oil,Incendiar,A3
+fire arson,Incendiar,A3
+in bag,Incendiar,A3
+lamp,Incendiar,A3
+gun,Arma de fuego,A4
+gun (4shots),Arma de fuego,A4
+gun 22 lugr,Arma de fuego,A4
+gun 25,Arma de fuego,A4
+gun 410,Arma de fuego,A4
+gun beat,Arma de fuego,A4
+gun in car,Arma de fuego,A4
+gun knife,Arma de fuego,A4
+gun on vic,Arma de fuego,A4
+gun rifle,Arma de fuego,A4
+gun shot,Arma de fuego,A4
+gun strangl,Arma de fuego,A4
+gun sword,Arma de fuego,A4
+gun/beat,Arma de fuego,A4
+gun/knife,Arma de fuego,A4
+shot,Arma de fuego,A4
+shot gun,Arma de fuego,A4
+shotgun,Arma de fuego,A4
+shotgun?,Arma de fuego,A4
+beaten,Fuerza,A5
+beating,Fuerza,A5
+blunt force,Fuerza,A5
+blunt forcer,Fuerza,A5
+blunt trauma,Fuerza,A5
+defenestrat,Fuerza,A5
+defenestrate,Fuerza,A5
+defenestration,Fuerza,A5
+defenstrate,Fuerza,A5
+exertion,Fuerza,A5
+falls,Fuerza,A5
+feet or fists,Fuerza,A5
+fight,Fuerza,A5
+foot,Fuerza,A5
+force,Fuerza,A5
+fprce,Fuerza,A5
+hand,Fuerza,A5
+hands,Fuerza,A5
+head,Fuerza,A5
+head agin wall,Fuerza,A5
+head injury,Fuerza,A5
+head pavem,Fuerza,A5
+head trauma,Fuerza,A5
+heart attack,Fuerza,A5
+hemorage,Fuerza,A5
+hip,Fuerza,A5
+hit,Fuerza,A5
+hit abdomen,Fuerza,A5
+hit choked,Fuerza,A5
+hit head,Fuerza,A5
+hit in head,Fuerza,A5
+hit inhead,Fuerza,A5
+hit sidewalk,Fuerza,A5
+hits head,Fuerza,A5
+internal,Fuerza,A5
+internl,Fuerza,A5
+jaw,Fuerza,A5
+jump,Fuerza,A5
+kick,Fuerza,A5
+kick in head,Fuerza,A5
+kicked,Fuerza,A5
+knock down,Fuerza,A5
+knocked do,Fuerza,A5
+knocked dwn,Fuerza,A5
+pick handle,Fuerza,A5
+punch,Fuerza,A5
+punched,Fuerza,A5
+purse sna,Fuerza,A5
+Pushed,Fuerza,A5
+pushes man,Fuerza,A5
+shaken,Fuerza,A5
+shook,Fuerza,A5
+skull,Fuerza,A5
+skull fract,Fuerza,A5
+stairs,Fuerza,A5
+"the club""",Fuerza,A5
+throat,Fuerza,A5
+thrown overo,Fuerza,A5
+urinal,Fuerza,A5
+window,Fuerza,A5
+asphxiate,Falta de oxigeno,A6
+bound,Falta de oxigeno,A6
+chocked,Falta de oxigeno,A6
+choked,Falta de oxigeno,A6
+cord,Falta de oxigeno,A6
+down toilet,Falta de oxigeno,A6
+drowned,Falta de oxigeno,A6
+gagged,Falta de oxigeno,A6
+gagged etc,Falta de oxigeno,A6
+ligature,Falta de oxigeno,A6
+ligature neck,Falta de oxigeno,A6
+neck,Falta de oxigeno,A6
+phone cord,Falta de oxigeno,A6
+pillow,Falta de oxigeno,A6
+smother,Falta de oxigeno,A6
+smothered,Falta de oxigeno,A6
+stran/hamm,Falta de oxigeno,A6
+strangle,Falta de oxigeno,A6
+strangled,Falta de oxigeno,A6
+stranlde,Falta de oxigeno,A6
+suffocat,Falta de oxigeno,A6
+suffocate,Falta de oxigeno,A6
+tied up,Falta de oxigeno,A6
+toilet,Falta de oxigeno,A6
+ax,Arma blanca,A7
+ax (hatchet),Arma blanca,A7
+axe,Arma blanca,A7
+beer bottle,Arma blanca,A7
+beer glass,Arma blanca,A7
+bladed,Arma blanca,A7
+bottle,Arma blanca,A7
+brokenbottl,Arma blanca,A7
+chisel,Arma blanca,A7
+cleaver,Arma blanca,A7
+dagger,Arma blanca,A7
+decapitate,Arma blanca,A7
+fork,Arma blanca,A7
+glass,Arma blanca,A7
+handax,Arma blanca,A7
+hatchet,Arma blanca,A7
+knfe,Arma blanca,A7
+knife,Arma blanca,A7
+pitchfork,Arma blanca,A7
+razor,Arma blanca,A7
+Scissors,Arma blanca,A7
+"scissors, cuticle",Arma blanca,A7
+screwdriver,Arma blanca,A7
+screwdrivr,Arma blanca,A7
+shears,Arma blanca,A7
+slashed,Arma blanca,A7
+spear,Arma blanca,A7
+stab,Arma blanca,A7
+throat cut,Arma blanca,A7
+umbrella,Arma blanca,A7
+auto,Vehiculo ,A8
+auto jack,Vehiculo ,A8
+car,Vehiculo ,A8
+gur,Vehiculo ,A8
+on coming auto,Vehiculo ,A8
+streetcar,Vehiculo ,A8
+barbell,Objeto,A9
+basalt bloc,Objeto,A9
+base. bat,Objeto,A9
+Bat,Objeto,A9
+bat blunt,Objeto,A9
+bat etc,Objeto,A9
+belt,Objeto,A9
+billet,Objeto,A9
+bl force,Objeto,A9
+board,Objeto,A9
+body wrapped,Objeto,A9
+brick,Objeto,A9
+broom,Objeto,A9
+broom rectu,Objeto,A9
+cane,Objeto,A9
+cement block,Objeto,A9
+chair,Objeto,A9
+cobble,Objeto,A9
+concrete,Objeto,A9
+controller,Objeto,A9
+crutch,Objeto,A9
+curtin rod,Objeto,A9
+cuspidor,Objeto,A9
+door mat,Objeto,A9
+figurine,Objeto,A9
+flat iron,Objeto,A9
+fry pan,Objeto,A9
+frying pan,Objeto,A9
+hamm/knif,Objeto,A9
+hammer,Objeto,A9
+hard object,Objeto,A9
+hard oject,Objeto,A9
+iron bar,Objeto,A9
+iron pipe,Objeto,A9
+jack,Objeto,A9
+lumber,Objeto,A9
+mace,Objeto,A9
+Mallet,Objeto,A9
+mallett,Objeto,A9
+metal bar,Objeto,A9
+paddle,Objeto,A9
+pan,Objeto,A9
+pincers,Objeto,A9
+pipe,Objeto,A9
+pliers,Objeto,A9
+riot,Objeto,A9
+rock,Objeto,A9
+rocks,Objeto,A9
+roller skate,Objeto,A9
+rolling pin,Objeto,A9
+sandbag,Objeto,A9
+shoe,Objeto,A9
+shovel,Objeto,A9
+stick,Objeto,A9
+stone,Objeto,A9
+stones,Objeto,A9
+table leg,Objeto,A9
+telephone,Objeto,A9
+Tiki statue,Objeto,A9
+tire iron,Objeto,A9
+tree limb,Objeto,A9
+treelimb,Objeto,A9
+tripod,Objeto,A9
+weight,Objeto,A9
+wrench,Objeto,A9
+ash tray,Objeto,A9
+2/4 scantlin,No clasificado,NC
+2x4,No clasificado,NC
+bea,No clasificado,NC
+castrated,No clasificado,NC
+club,No clasificado,NC
+club?,No clasificado,NC
+crush head,No clasificado,NC
+dismember,No clasificado,NC
+ditto,No clasificado,NC
+ditto?,No clasificado,NC
+down stairs,No clasificado,NC
+dropped,No clasificado,NC
+dwn stairs,No clasificado,NC
+file,No clasificado,NC
+files,No clasificado,NC
+filsts,No clasificado,NC
+fun,No clasificado,NC
+hog tied,No clasificado,NC
+hot water,No clasificado,NC
+in Bay,No clasificado,NC
+in trash,No clasificado,NC
+knitting need,No clasificado,NC
+lack of care,No clasificado,NC
+lady charged,No clasificado,NC
+Lead pipe,No clasificado,NC
+looks white,No clasificado,NC
+m.c stand,No clasificado,NC
+malnutrition,No clasificado,NC
+nude,No clasificado,NC
+OD,No clasificado,NC
+poker,No clasificado,NC
+sap,No clasificado,NC
+scalded,No clasificado,NC
+soldier pants down i,No clasificado,NC
+starvation,No clasificado,NC
+stor thout 211 men,No clasificado,NC
+sus 801,No clasificado,NC
+TBD,No clasificado,NC
+trauma,No clasificado,NC
+unk,No clasificado,NC
+unknown,No clasificado,NC
