@@ -5,6 +5,7 @@ module.exports = function (server) {
 
 	io.on('connection', function (socket) {
 		console.log('New user connected by WebSockets \n');
+
 		socket.on('GetTree', (data) => {
 			console.log(data);
 			model.BestTree()
@@ -15,19 +16,24 @@ module.exports = function (server) {
 		});
 
 
-		socket.on('Homicides', async ( data, callback ) => {
+		socket.on('Homicides', async (data, callback) => {
 			console.log(data);
-			callback( await model.Homicides() );
+			callback(await model.Homicides());
+		});
+		socket.on('Filter', async (data, callback) => {
+			console.log(data);
+			// './Temp/Log.csv';
+			callback(await model.Filter(1744, 3487, './Temp/homicides.csv'));
+		});
+		socket.on('Gender', async (data, callback) => {
+			console.log(data);
+			callback(await model.Gender('./Temp/homicides.csv'));
 		});
 
-
-
-
-		socket.on('Autos', async ( data, callback ) => {
+		socket.on('Autos', async (data, callback) => {
 			console.log(data);
-			callback( await model.Autos() );
+			callback(await model.Autos('./Temp/autos.csv', ['State', 'Claim Amount', 'Coverage']) );
 		});
-
 
 		socket.on('Hello', (data) => {
 			console.log(data);

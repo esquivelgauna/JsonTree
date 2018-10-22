@@ -47,6 +47,12 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
             console.log(Autos);
         });
     }
+    $scope.Filter = () => {
+        socket.emit('Gender', null , (Filter)=>{
+            console.log(Filter);
+        });
+    }
+
     socket.on('SetTree', (data) => {
         let keys = Object.keys(data);
         let childs = Rama(data);
