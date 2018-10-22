@@ -6,21 +6,44 @@ module.exports = function (server) {
 	io.on('connection', function (socket) {
 		console.log('New user connected by WebSockets \n');
 		socket.on('GetTree', (data) => {
-			console.log(data); 
+			console.log(data);
+			model.BestTree()
+
 			model.Excel((tree) => {
-				socket.emit('SetTree',tree);
+				socket.emit('SetTree', tree);
 			});
 		});
+
+
+		socket.on('Homicides', async ( data, callback ) => {
+			console.log(data);
+			callback( await model.Homicides() );
+		});
+
+
+
+
+		socket.on('Autos', async ( data, callback ) => {
+			console.log(data);
+			callback( await model.Autos() );
+		});
+
 
 		socket.on('Hello', (data) => {
 			console.log(data);
 		});
 
-
 		socket.on('disconnect', () => {});
 	});
 	return io;
 };
+
+
+
+
+
+
+
 
 // nodeStructure: {
 // 	text: {

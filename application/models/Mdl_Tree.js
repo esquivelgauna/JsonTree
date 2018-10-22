@@ -7,16 +7,15 @@ exports.Excel = (callback) => {
 	console.log("Iniciando el procesado");
 	csv().fromFile(csvFilePath).then((jsonObj) => {
 		console.log("Lectura teminada..")
-		this.Guns( (gunsList)=>{
+		this.Guns((gunsList) => {
 			this.DoTree1(jsonObj, gunsList, (tree) => {
 				callback(tree);
 			});
-		} );
-		
+		});
 	});
-} 
+}
 
-exports.DoTree1 = (cases,gunsList, callback) => {
+exports.DoTree1 = (cases, gunsList, callback) => {
 	// VICTIM: 'Blac steward',
 	// VicRac: '3',
 	// VicGen: '1',
@@ -47,15 +46,15 @@ exports.DoTree1 = (cases,gunsList, callback) => {
 			}
 			//Clasification
 			//CLASSIFICATION
-			if ( cases[jIndex]["SITUATION ID"] == "") {
+			if (cases[jIndex]["SITUATION ID"] == "") {
 				place = 'Unclassified';
 			} else {
 				place = cases[jIndex]["SITUATION ID"];
 			}
 			//Gun Type 
-			if( gunsList[cases[jIndex]["WEAPON ID"]] ){
+			if (gunsList[cases[jIndex]["WEAPON ID"]]) {
 				gunType = cases[jIndex]["WEAPON ID"];
-			}else{
+			} else {
 				gunType = "NC";
 			}
 
@@ -113,7 +112,7 @@ exports.Guns = (callback) => {
 			(((jindex) => {
 				gunsList[jsonObj[jindex]['WEAPON ID']] = jsonObj[jindex]['WEAPON TYPE'];
 				if (cont == length) {
-					console.log( 'Armas',  gunsList);
+					console.log('Armas', gunsList);
 					callback(gunsList);
 				}
 			})(index))
@@ -137,4 +136,43 @@ exports.Sit = (callback) => {
 			})(index))
 		}
 	});
+}
+
+exports.Homicides = async () => {
+
+	return new Promise( async(resolve, reject) => {
+		const data = await this.ReadExcel(csvFilePath);
+		console.log( data );
+
+		resolve(data);
+
+	});
+}
+exports.Autos = async () => {
+
+	return new Promise( async(resolve, reject) => {
+		const data = await this.ReadExcel(csvFilePath);
+		console.log( data );
+
+		resolve(data);
+
+	});
+}
+
+exports.ReadExcel = (csvName) => {
+
+	return new Promise(async (resolve, reject) => {
+
+		resolve
+		csv().fromFile(csvName).then((data) => {
+			resolve(data)
+		}, (err) => {
+			reject(err)
+		});
+
+	});
+}
+
+exports.Entropy = ( tree )=>{
+
 }

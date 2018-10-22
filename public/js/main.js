@@ -37,8 +37,15 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
     socket.emit('Hello', {
         Hellou: "DER"
     });
-    $scope.GetTree = () => {
-        socket.emit('GetTree');
+    $scope.Homicides = () => {
+        socket.emit('Homicides', null , (Homicides)=>{
+            console.log(Homicides);
+        });
+    }
+    $scope.Autos = () => {
+        socket.emit('Autos', null , (Autos)=>{
+            console.log(Autos);
+        });
     }
     socket.on('SetTree', (data) => {
         let keys = Object.keys(data);
