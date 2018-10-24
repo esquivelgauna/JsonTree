@@ -21,3 +21,5 @@ server.listen(port, function (err) {
 	if (err) return console.log(err);
 	console.log("Servidor corriendo en http://localhost:" , port);
 });
+
+// console.log( Math.abs(-.0101010313131331) );

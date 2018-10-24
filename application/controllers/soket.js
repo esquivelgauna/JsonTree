@@ -16,7 +16,7 @@ module.exports = function (server) {
 		});
 
 
-		socket.on('Homicides', async (data, callback) => {
+		socket.on('Homicides12', async (data, callback) => {
 			console.log(data);
 			callback(await model.Homicides());
 		});
@@ -25,14 +25,14 @@ module.exports = function (server) {
 			// './Temp/Log.csv';
 			callback(await model.Filter(1744, 3487, './Temp/homicides.csv'));
 		});
-		socket.on('Gender', async (data, callback) => {
-			console.log(data);
-			callback(await model.Gender('./Temp/homicides.csv'));
+		socket.on('Homicides', async (data, callback) => {
+			// console.log(data);
+			callback(await model.TheTree('./Temp/homicides-clasificated.csv', ['WEAPON ID', 'SITUATION ID', 'Gender', 'Race']) );
 		});
 
 		socket.on('Autos', async (data, callback) => {
 			//console.log(data);
-			callback(await model.Autos('./Temp/autos.csv', ['State', 'Claim Amount', 'Coverage']) );
+			callback(await model.TheTree('./Temp/autos.csv', ['State', 'Claim Amount', 'Coverage']) );
 		});
 
 		socket.on('Hello', (data) => {

@@ -110,7 +110,7 @@ exports.Homicides = async () => {
 
 	});
 }
-exports.Autos = async (path, columns) => {
+exports.TheTree = async (path, columns) => {
 
 	return new Promise(async (resolve, reject) => {
 
@@ -123,9 +123,10 @@ exports.Autos = async (path, columns) => {
 		let perm = cmb.toArray();
 		let trees = [];
 		for (let index in perm) {
-			trees.push( await this.Tree(perm[index], data) );
+			trees.push( await this.Entropy( await this.Tree(perm[index], data)  )   );
 		}
-		resolve( trees );
+		// console.log( );
+		resolve( trees[3] );
 	});
 }
 
@@ -146,7 +147,6 @@ exports.Tree = (columns, data) => {
 		//console.log('Columns: ', columns);
 		//console.log('First row: ', data[0]);
 		let categories = [];
-		let myTree = {};
 		for (let index in columns) {
 			categories[index] = {
 				name: columns[index],
@@ -158,9 +158,26 @@ exports.Tree = (columns, data) => {
 }
 
 exports.Entropy = (tree) => {
+	return new Promise(async (resolve, reject) => {
+		//console.log(tree); 
+		// let newTree = {
+		// 	entropy: 0,
+		// };
+		for (let index in tree) {
+			tree[index].entropy = (tree[index].cont / tree[index].total) * Math.log2((tree[index].cont / tree[index].total));
+			// newTree.entropy += tree[index].entropy;
 
-	
-
+			if (tree[index].branches) {
+				tree[index].branches = await this.Entropy(tree[index].branches); 
+				// newTree.entropy += ntree.entropy;
+				//  = ntree.tree;
+			}
+		}
+		// console.log( newTree.entropy );
+		// newTree.entropy = Math.abs(newTree.entropy);
+		// newTree.tree = tree;
+		resolve(tree);
+	});
 }
 
 exports.GetCategories = (column, data) => {
@@ -182,9 +199,11 @@ exports.Branch = (branches, data) => {
 		for (let index in branches[0].categories) {
 			branch[branches[0].categories[index]] = {
 				name: branches[0].categories[index],
-				cont: 0
+				cont: 0,
+				total: data.length,
 			}
 			newData = [];
+
 			for (let id in data) {
 
 				if (data[id][branches[0].name] == branches[0].categories[index]) {
