@@ -31,7 +31,7 @@ module.exports = function (server) {
 		});
 
 		socket.on('Autos', async (data, callback) => {
-			console.log(data);
+			//console.log(data);
 			callback(await model.Autos('./Temp/autos.csv', ['State', 'Claim Amount', 'Coverage']) );
 		});
 

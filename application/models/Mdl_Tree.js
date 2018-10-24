@@ -1,5 +1,6 @@
 const csv = require('csvtojson');
 const fs = require('fs')
+var Combinatorics = require('js-combinatorics');
 const Json2csvParser = require('json2csv').Parser;
 
 const csvFilePath = './Temp/Log.csv';
@@ -19,14 +20,6 @@ exports.Excel = (callback) => {
 }
 
 exports.DoTree1 = (cases, gunsList, callback) => {
-	// VICTIM: 'Blac steward',
-	// VicRac: '3',
-	// VicGen: '1',
-	// AGE: '',
-	// SUSPECT: 'Wilson, Wm',
-	// SusRac: '1',
-	// SusGen: '1',
-	// SAGE: '',
 	let length = Object.keys(cases).length;
 	let cont = 0;
 	let tree = {};
@@ -103,43 +96,9 @@ exports.DoTree1 = (cases, gunsList, callback) => {
 		})(index));
 	}
 }
-  
-exports.Guns = (callback) => {
-	let gunsList = {};
-	csv().fromFile(guns).then((jsonObj) => {
-		let length = jsonObj.length;
-		let cont = 0;
-		//console.log( 'Armas',  jsonObj );
-		for (let index in jsonObj) {
-			cont++;
-			(((jindex) => {
-				gunsList[jsonObj[jindex]['WEAPON ID']] = jsonObj[jindex]['WEAPON TYPE'];
-				if (cont == length) {
-					console.log('Armas', gunsList);
-					callback(gunsList);
-				}
-			})(index))
-		}
-	});
-}
 
-exports.Sit = (callback) => {
-	let sitList = {};
-	csv().fromFile(sit).then((jsonObj) => {
-		let length = jsonObj.length;
-		let cont = 0;
-		for (let index in jsonObj) {
-			cont++;
-			(((jindex) => {
-				sitList[jsonObj[jindex]['Situaciones']] = jsonObj[jindex]['Let'];
-				if (cont == length) {
-					console.log(sitList);
-					callback(sitList);
-				}
-			})(index))
-		}
-	});
-}
+
+
 
 exports.Homicides = async () => {
 
@@ -151,15 +110,22 @@ exports.Homicides = async () => {
 
 	});
 }
-exports.Autos = async ( path , columns ) => {
+exports.Autos = async (path, columns) => {
 
 	return new Promise(async (resolve, reject) => {
-		
-		//const data = await this.ReadCSV(path);
-		console.log( path , columns );
 
-		resolve(true);
+		const data = await this.ReadCSV(path);
+		//console.log(path, columns);
+		//console.log(cmb.toArray());
+		// this.Permutation(columns, columns.length)
 
+		cmb = Combinatorics.permutation(columns);
+		let perm = cmb.toArray();
+		let trees = [];
+		for (let index in perm) {
+			trees.push( await this.Tree(perm[index], data) );
+		}
+		resolve( trees );
 	});
 }
 
@@ -174,99 +140,65 @@ exports.ReadCSV = (csvName) => {
 	});
 }
 
+exports.Tree = (columns, data) => {
+	return new Promise(async (resolve, reject) => {
+		//console.log('Doing tree...');
+		//console.log('Columns: ', columns);
+		//console.log('First row: ', data[0]);
+		let categories = [];
+		let myTree = {};
+		for (let index in columns) {
+			categories[index] = {
+				name: columns[index],
+				categories: await this.GetCategories(columns[index], data)
+			};
+		}
+		resolve(this.Branch(categories, data));
+	});
+}
+
 exports.Entropy = (tree) => {
 
-}
-exports.Conbiner =( columns )=>{
-	let list = {};
-	columns.length
+	
 
 }
 
+exports.GetCategories = (column, data) => {
+	return new Promise(async (resolve, reject) => {
+		let list = [];
+		for (let index in data) {
+			if (!list.includes(data[index][column])) {
+				list.push(data[index][column]);
+			}
+		}
+		resolve(list)
+	})
+}
+exports.Branch = (branches, data) => {
+	return new Promise(async (resolve, reject) => {
+		let branch = {};
+		let newData;
 
+		for (let index in branches[0].categories) {
+			branch[branches[0].categories[index]] = {
+				name: branches[0].categories[index],
+				cont: 0
+			}
+			newData = [];
+			for (let id in data) {
 
-
-
-
-
-
-
-exports.Filter = (from, to, path) => {
-
-	return new Promise( async (resolve, reject) => {
-		// const csvFilePath = './Temp/Log.csv';
-		csv().fromFile(path).then( async (jsonObj) => {
-
-			console.log( Object.keys( jsonObj[0] ) );
-			console.log( jsonObj[0] );
-			let data = [];
-			await jsonObj.map(( row )=>{
-				if( row.ID >= from && row.ID <= to ) {
-					data[ row.ID ] = row;
+				if (data[id][branches[0].name] == branches[0].categories[index]) {
+					//console.log('equal');
+					branch[branches[0].categories[index]].cont++;
+					newData.push(data[id]);
 				}
-			});
-			// for( let i = from ; i >= to ; i++ ){
-			// 	 data[i] = await jsonObj[i-1];
-			// }
-			console.log(data.length);
-			let fields = Object.keys( jsonObj[0] )
-			let csvInit = new Json2csvParser({
-				fields
-			});
-			const csv = csvInit.parse(data);
-			//console.log(csv);
-			fs.writeFile('Filtro.csv', csv, 'utf8', function (err) {
-				if (err) {
-					console.log('Some error occured - file either not saved or corrupted file saved.');
-				} else {
-					console.log('It\'s saved!');
-				}
-			});
+			}
+			if (branches.length > 1) {
 
-			resolve(jsonObj);
-			
-		})
+				branch[branches[0].categories[index]].branches = await this.Branch(branches.slice(1), newData);
+			}
+		}
+
+		resolve(branch);
 	});
-
-}
-exports.Gender = (path) => {
-
-	return new Promise( async (resolve, reject) => {
-		csv().fromFile(path).then( async (jsonObj) => {
-			console.log( Object.keys( jsonObj[0] ) ); 
-			let data = [];
-			await jsonObj.map(( row )=>{
-				//Gender
-				if( row['VicGen'] ==   row['SusGen'] ){
-					row['Gender'] = 'SAME' ;
-				}else{
-					row['Gender'] = 'DIF' ;
-				}
-				//Race
-				if( row['VicRac'] ==   row['SusRac'] ){
-					row['Race'] = 'SAME' ;
-				}else{
-					row['Race'] = 'DIF' ;
-				}
-				data[ row.ID ] = row;
-			}); 
-			console.log(data.length);
-			let fields = Object.keys( jsonObj[0] )
-			let csvInit = new Json2csvParser({
-				fields
-			});
-			const csv = csvInit.parse(data);
-			fs.writeFile('Gender.csv', csv, 'utf8', function (err) {
-				if (err) {
-					console.log('Some error occured - file either not saved or corrupted file saved.');
-				} else {
-					console.log('It\'s saved!');
-				}
-			});
-
-			resolve(jsonObj);
-			
-		})
-	});
-
 }
