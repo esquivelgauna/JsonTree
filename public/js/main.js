@@ -32,18 +32,21 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
     socket.emit('Hello', {
         Hellou: "DER"
     });
+    
     $scope.Homicides = () => {
         socket.emit('Homicides', null, (Homicides) => {
             console.log(Homicides);
             Tree(Homicides, 'Homicides');
         });
     }
+
     $scope.Autos = () => {
         socket.emit('Autos', null, (Autos) => {
             console.log(Autos);
             Tree(Autos, 'Autos Tree');
         });
     }
+
     $scope.Filter = () => {
         socket.emit('Gender', null, (Filter) => {
             console.log(Filter);
@@ -80,11 +83,11 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
     function Tree(data, name) {
         var tree = {
             text: {
-                name: name
+                name: name + ' - ' + ' Entropy:'+ ' ' + data.entropy
             },
             children: []
         };
-        let childs = Rama(data);
+        let childs = Rama(data.trees[ data.index ]);
         tree.children = childs;
         simple_chart_config = {
             chart: {
@@ -140,7 +143,6 @@ MyApp.controller("Tree", function ($scope, $location, $http, socket) {
         return children;
 
     }
-
     function Ramaolddd(json) {
         let children = [];
         for (let index in json) {

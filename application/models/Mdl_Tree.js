@@ -98,8 +98,6 @@ exports.DoTree1 = (cases, gunsList, callback) => {
 }
 
 
-
-
 exports.Homicides = async () => {
 
 	return new Promise(async (resolve, reject) => {
@@ -123,10 +121,29 @@ exports.TheTree = async (path, columns) => {
 		let perm = cmb.toArray();
 		let trees = [];
 		for (let index in perm) {
-			trees.push( await this.Entropy( await this.Tree(perm[index], data)  )   );
+			trees.push(await this.Entropy(await this.Tree(perm[index], data)));
+		}
+		
+		let bestTree = {
+			entropy: 0,
+			index: 0,
+		};
+		for (let index in trees) {
+			let tree = await this.TotalEntropy(trees[index]);
+			if (index == 0) {
+				bestTree.entropy = tree;
+			} else {
+				if (tree < bestTree.entropy) {
+					bestTree.entropy = tree;
+					bestTree.index = index;
+				}
+			}
+
+			console.log('Entropy tree', index, 'total:', tree);
 		}
 		// console.log( );
-		resolve( trees[3] );
+		bestTree.trees = trees;
+		resolve( bestTree );
 	});
 }
 
@@ -164,11 +181,16 @@ exports.Entropy = (tree) => {
 		// 	entropy: 0,
 		// };
 		for (let index in tree) {
-			tree[index].entropy = (tree[index].cont / tree[index].total) * Math.log2((tree[index].cont / tree[index].total));
+			if (tree[index].cont > 0) {
+				tree[index].entropy = -(tree[index].cont / tree[index].total) * Math.log10((tree[index].cont / tree[index].total));
+			} else {
+				tree[index].entropy = 0;
+			}
+
 			// newTree.entropy += tree[index].entropy;
 
 			if (tree[index].branches) {
-				tree[index].branches = await this.Entropy(tree[index].branches); 
+				tree[index].branches = await this.Entropy(tree[index].branches);
 				// newTree.entropy += ntree.entropy;
 				//  = ntree.tree;
 			}
@@ -179,6 +201,26 @@ exports.Entropy = (tree) => {
 		resolve(tree);
 	});
 }
+
+exports.TotalEntropy = (tree) => {
+
+	return new Promise(async (resolve, reject) => {
+		let total = 0;
+		for (let index in tree) {
+			if (tree[index].entropy != null) {
+				//console.log( tree[index].entropy );
+				total += tree[index].entropy;
+				if (tree[index].branches) {
+					total += await this.TotalEntropy(tree[index].branches);
+				}
+			}
+		}
+		//console.log( 'Entropy Total', total);
+		resolve(total);
+	});
+
+}
+
 
 exports.GetCategories = (column, data) => {
 	return new Promise(async (resolve, reject) => {
